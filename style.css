@@ -1,6 +1,6 @@
 .container {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 60%;
     grid-template-rows: 50% auto;
     grid-template-areas:
       "L R";
@@ -8,7 +8,6 @@
 
 .gr-container {
   height: 100vh;
-  border: 0.5px solid #4A4949;
   display: grid;
   grid-template-columns: 61.8% 9.02% 5.58% 23.6%;
   grid-template-rows: 61.8% 9.02% 5.58% 23.6%;
@@ -19,18 +18,20 @@
     "A D D C";
 }
 
+.left-container {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 50% auto;
+    grid-template-areas:
+      "L R";
+}
+
 .item {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
-  color: #F2F2F2;
-  font-size: 1.5em;
-  font-weight: 700;
-  text-shadow: 1px 1px 1px #878787;
-  box-sizing: border-box;
-  border: 0.5px solid #4A4949;
+  padding: 5px;
+  border: 10px solid white;
 }
 
 .item.a {
