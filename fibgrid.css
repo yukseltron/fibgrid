@@ -1,0 +1,67 @@
+/**
+ * FibGrid — A CSS Grid layout system based on the Golden Ratio
+ *
+ * Columns and rows are divided using recursive φ (phi = 1.618) subdivision:
+ *
+ *   61.8%  →  1/φ         (largest zone)
+ *   23.6%  →  (1 - 1/φ) × 1/φ
+ *    9.0%  →  (1 - 1/φ) × (1 - 1/φ) × 1/φ
+ *    5.6%  →  remainder
+ *
+ * Grid areas (7 cells, A–G):
+ *
+ *   ┌───────────────────────────────┐
+ *   │               │ B             │
+ *   │               ├────┬────┤     │
+ *   │      A        │ E  │ F  │  C  │
+ *   │               │    ├────┤     │
+ *   │               │    │ G  │     │
+ *   ├───────────────┴────┴────┤     │
+ *   │           D             │     │
+ *   └─────────────────────────┴─────┘
+ *
+ * Usage:
+ *   <div class="fibgrid">
+ *     <div class="fibgrid-cell a">A</div>
+ *     <div class="fibgrid-cell b">B</div>
+ *     <div class="fibgrid-cell c">C</div>
+ *     <div class="fibgrid-cell d">D</div>
+ *     <div class="fibgrid-cell e">E</div>
+ *     <div class="fibgrid-cell f">F</div>
+ *     <div class="fibgrid-cell g">G</div>
+ *   </div>
+ *
+ * Customisation:
+ *   --fibgrid-height   Height of the grid (default: 100vh)
+ *   --fibgrid-gap      Gap between cells (default: 0px)
+ */
+
+.fibgrid {
+  display: grid;
+  height: var(--fibgrid-height, 100vh);
+  gap: var(--fibgrid-gap, 0px);
+  grid-template-columns: 61.8% 9.02% 5.58% 23.6%;
+  grid-template-rows:    61.8% 9.02% 5.58% 23.6%;
+  grid-template-areas:
+    "a b b b"
+    "a e f c"
+    "a e g c"
+    "a d d c";
+}
+
+.fibgrid-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+}
+
+.fibgrid-cell.a { grid-area: a; }
+.fibgrid-cell.b { grid-area: b; }
+.fibgrid-cell.c { grid-area: c; }
+.fibgrid-cell.d { grid-area: d; }
+.fibgrid-cell.e { grid-area: e; }
+.fibgrid-cell.f { grid-area: f; }
+.fibgrid-cell.g { grid-area: g; }

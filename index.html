@@ -1,40 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>title</title>
-  <link rel="stylesheet" href="style.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FibGrid — Golden Ratio CSS Grid</title>
+    <link rel="stylesheet" href="fibgrid.css">
+    <style>
+      /* Demo styles — not part of fibgrid.css */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: system-ui, sans-serif;
+        background: #0f0f0f;
+        color: #f0f0f0;
+      }
+
+      /* Override gap for the demo */
+      .fibgrid {
+        --fibgrid-gap: 4px;
+      }
+
+      /* Demo colours per cell */
+      .fibgrid-cell.a { background: #a0ddff; color: #0f0f0f; }
+      .fibgrid-cell.b { background: #c1cefe; color: #0f0f0f; }
+      .fibgrid-cell.c { background: #758ecd; color: #0f0f0f; }
+      .fibgrid-cell.d { background: #7189ff; color: #0f0f0f; }
+      .fibgrid-cell.e { background: #624cab; }
+      .fibgrid-cell.f { background: #5d2e8c; }
+      .fibgrid-cell.g { background: #3a1a6e; }
+
+      .fibgrid-cell span {
+        font-size: 0.75rem;
+        font-weight: 600;
+        opacity: 0.6;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* Info bar */
+      .info {
+        padding: 1.5rem 2rem;
+        border-top: 1px solid #222;
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        align-items: baseline;
+      }
+
+      .info h1 {
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+
+      .info p {
+        font-size: 0.8rem;
+        color: #888;
+        max-width: 60ch;
+      }
+
+      .info code {
+        font-family: monospace;
+        font-size: 0.75rem;
+        background: #1a1a1a;
+        padding: 0.15em 0.4em;
+        border-radius: 3px;
+        color: #c1cefe;
+      }
+    </style>
   </head>
   <body>
-      <div class="container">
-          <div class="left-container">
-              <p>
-                Is a designer and developer. 
-              </p>
-          </div>
-          <div class="gr-container">
-            <div class="item a">A</div>
-            <div class="item b">B</div>
-            <div class="item c">C</div>
-            <div class="item d">D</div>
-            <div class="item e">E</div>
-            <div class="item f">F</div>
-            <div class="item g">G</div>
-          </div>
-      </div>
-      <div class="container">
-          <div class="left">
-              <h1>About</h1>
-          </div>
-          <div class="gr-container">
-            <div class="item a">A</div>
-            <div class="item b">B</div>
-            <div class="item c">C</div>
-            <div class="item d">D</div>
-            <div class="item e">E</div>
-            <div class="item f">F</div>
-            <div class="item g">G</div>
-          </div>
-      </div>
+
+    <div class="fibgrid">
+      <div class="fibgrid-cell a"><span>A — 61.8%</span></div>
+      <div class="fibgrid-cell b"><span>B</span></div>
+      <div class="fibgrid-cell c"><span>C</span></div>
+      <div class="fibgrid-cell d"><span>D</span></div>
+      <div class="fibgrid-cell e"><span>E</span></div>
+      <div class="fibgrid-cell f"><span>F</span></div>
+      <div class="fibgrid-cell g"><span>G</span></div>
+    </div>
+
+    <div class="info">
+      <h1>FibGrid</h1>
+      <p>
+        A CSS Grid layout built on the Golden Ratio (φ = 1.618).
+        Columns and rows are subdivided recursively: <code>61.8%</code> <code>23.6%</code> <code>9.0%</code> <code>5.6%</code>.
+        Drop in <code>fibgrid.css</code> and use <code>.fibgrid</code> + <code>.fibgrid-cell.a</code>–<code>.g</code>.
+      </p>
+    </div>
+
   </body>
 </html>
