@@ -1,0 +1,16 @@
+{
+  "name": "fibgrid",
+  "version": "1.0.0",
+  "description": "A CSS Grid layout system based on the Golden Ratio (φ = 1.618)",
+  "main": "fibgrid.css",
+  "style": "fibgrid.css",
+  "keywords": ["css", "grid", "golden-ratio", "fibonacci", "layout"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yukseltron/fibgrid"
+  },
+  "files": [
+    "fibgrid.css"
+  ]
+}

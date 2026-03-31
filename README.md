@@ -45,23 +45,3 @@ Override these CSS custom properties on `.fibgrid`:
   --fibgrid-gap: 8px;
 }
 ```
-
-## Grid layout
-
-```
-┌──────────────────────┬──────────────────────┐
-│                      │  B                   │
-│                      ├───────┬──────┐        │
-│  A                   │  E    │  F   │  C     │
-│                      │       ├──────┤        │
-│                      │       │  G   │        │
-├──────────────────────┴───────┴──────┤        │
-│  D                                  │        │
-└─────────────────────────────────────┴────────┘
-```
-
-Cell sizes reflect their position in the φ subdivision — A is always the largest, G the smallest.
-
-## Demo
-
-Open `index.html` in a browser.

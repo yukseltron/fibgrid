@@ -6,7 +6,6 @@
     <title>FibGrid — Golden Ratio CSS Grid</title>
     <link rel="stylesheet" href="fibgrid.css">
     <style>
-      /* Demo styles — not part of fibgrid.css */
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       body {
@@ -15,80 +14,514 @@
         color: #f0f0f0;
       }
 
-      /* Override gap for the demo */
-      .fibgrid {
-        --fibgrid-gap: 4px;
-      }
+      /* ── Page header ───────────────────────────────────── */
 
-      /* Demo colours per cell */
-      .fibgrid-cell.a { background: #a0ddff; color: #0f0f0f; }
-      .fibgrid-cell.b { background: #c1cefe; color: #0f0f0f; }
-      .fibgrid-cell.c { background: #758ecd; color: #0f0f0f; }
-      .fibgrid-cell.d { background: #7189ff; color: #0f0f0f; }
-      .fibgrid-cell.e { background: #624cab; }
-      .fibgrid-cell.f { background: #5d2e8c; }
-      .fibgrid-cell.g { background: #3a1a6e; }
-
-      .fibgrid-cell span {
-        font-size: 0.75rem;
-        font-weight: 600;
-        opacity: 0.6;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-
-      /* Info bar */
-      .info {
-        padding: 1.5rem 2rem;
-        border-top: 1px solid #222;
+      .page-header {
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #1e1e1e;
         display: flex;
+        justify-content: space-between;
+        align-items: baseline;
         gap: 2rem;
         flex-wrap: wrap;
-        align-items: baseline;
       }
 
-      .info h1 {
-        font-size: 1rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
+      .page-header h1 {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #555;
+        white-space: nowrap;
       }
 
-      .info p {
-        font-size: 0.8rem;
-        color: #888;
+      .page-header p {
+        font-size: 0.65rem;
+        color: #333;
         max-width: 60ch;
       }
 
-      .info code {
+      .page-header code {
         font-family: monospace;
-        font-size: 0.75rem;
-        background: #1a1a1a;
-        padding: 0.15em 0.4em;
-        border-radius: 3px;
-        color: #c1cefe;
+        color: #555;
+      }
+
+      /* ── Section label ─────────────────────────────────── */
+
+      .section {
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #1e1e1e;
+      }
+
+      .section h2 {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #555;
+      }
+
+      /* ── Static base demo ──────────────────────────────── */
+
+      .demo-base { border-bottom: 2px solid #fff; }
+
+      .demo-base .fibgrid { --fibgrid-gap: 4px; }
+
+      .demo-base .fibgrid-cell.a { background: #a0ddff; color: #0f0f0f; }
+      .demo-base .fibgrid-cell.b { background: #c1cefe; color: #0f0f0f; }
+      .demo-base .fibgrid-cell.c { background: #758ecd; color: #0f0f0f; }
+      .demo-base .fibgrid-cell.d { background: #7189ff; color: #0f0f0f; }
+      .demo-base .fibgrid-cell.e { background: #624cab; }
+      .demo-base .fibgrid-cell.f { background: #5d2e8c; }
+      .demo-base .fibgrid-cell.g { background: #3a1a6e; }
+
+      .cell-name {
+        font-size: clamp(1rem, 3vw, 2rem);
+        font-weight: 600;
+        opacity: 0.7;
+      }
+
+      /* ── Scrollable demo ───────────────────────────────── */
+
+      .demo-recursive {
+        position: relative;
+        height: 800vh;
+      }
+
+      .recursive-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        height: 100dvh;
+      }
+
+      .recursive-grid { --fibgrid-gap: 4px; }
+
+      .recursive-grid .fibgrid-cell.a { background: #000; }
+      .recursive-grid .fibgrid-cell.b { background: #a0ddff; color: #0f0f0f; }
+      .recursive-grid .fibgrid-cell.c { background: #7189ff; color: #0f0f0f; }
+      .recursive-grid .fibgrid-cell.d { background: #c1cefe; color: #0f0f0f; }
+      .recursive-grid .fibgrid-cell.e { background: #624cab; }
+      .recursive-grid .fibgrid-cell.f { background: #5d2e8c; }
+      .recursive-grid .fibgrid-cell.g { background: #3a1a6e; }
+
+      /* Cell A — image */
+      .recursive-grid .fibgrid-cell.a { padding: 0; overflow: hidden; background: #000; }
+
+      .rc-topic {
+        font-size: clamp(0.55rem, 1vw, 0.65rem);
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        opacity: 0.4;
+        margin-bottom: 0.4rem;
+      }
+
+      .rc-heading {
+        font-size: clamp(0.65rem, 1.2vw, 0.85rem);
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        opacity: 0.55;
+        margin-bottom: 0.6rem;
+      }
+
+      .rc-text {
+        font-family: Georgia, serif;
+        font-size: clamp(0.85rem, 1.6vw, 1.15rem);
+        line-height: 1.7;
+        color: #0f0f0f;
+        max-width: 52ch;
+      }
+
+      /* Cell B — main text */
+      .recursive-grid .fibgrid-cell.b {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: clamp(1rem, 3vw, 2.5rem);
+        overflow: hidden;
+      }
+
+      #rc-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+
+      /* Cell C — caption */
+      .recursive-grid .fibgrid-cell.c {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 0 1.25rem;
+        gap: 0.15rem;
+        overflow: hidden;
+      }
+
+      .rc-caption-label {
+        font-size: clamp(0.42rem, 0.7vw, 0.52rem);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        opacity: 0.4;
+      }
+
+      .rc-caption {
+        font-size: clamp(0.65rem, 1.2vw, 0.85rem);
+        font-family: Georgia, serif;
+        opacity: 0.85;
+        line-height: 1.35;
+      }
+
+      /* Cell D — title + next section */
+      .recursive-grid .fibgrid-cell.d {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: clamp(0.75rem, 2vw, 1.5rem);
+        overflow: hidden;
+      }
+
+      .rc-step {
+        font-size: clamp(0.5rem, 0.9vw, 0.65rem);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        opacity: 0.35;
+        margin-bottom: 0.3rem;
+      }
+
+      .rc-next {
+        font-size: clamp(0.75rem, 1.4vw, 1rem);
+        font-family: Georgia, serif;
+        font-style: italic;
+        opacity: 0.7;
+        line-height: 1.4;
+      }
+
+      /* Cells E–G — stats */
+      .recursive-grid .fibgrid-cell.e,
+      .recursive-grid .fibgrid-cell.f,
+      .recursive-grid .fibgrid-cell.g {
+        flex-direction: column;
+        gap: 0.1rem;
+      }
+
+      .rc-stat {
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+      }
+
+      .rc-stat-label {
+        font-size: clamp(0.38rem, 0.6vw, 0.48rem);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        opacity: 0.4;
+      }
+
+      .recursive-grid .fibgrid-cell.e .rc-stat { font-size: clamp(0.65rem, 1.2vw, 0.9rem); }
+      .recursive-grid .fibgrid-cell.f .rc-stat { font-size: clamp(0.55rem, 0.9vw, 0.7rem); }
+      .recursive-grid .fibgrid-cell.g .rc-stat { font-size: clamp(0.45rem, 0.7vw, 0.55rem); }
+
+      /* Content fade */
+      .rc-topic, .rc-heading, .rc-text,
+      .rc-step, .rc-next,
+      .rc-caption-label, .rc-caption,
+      .rc-stat, .rc-stat-label,
+      #rc-img {
+        transition: opacity 0.35s ease 0.05s;
+      }
+
+      .fading .rc-topic, .fading .rc-heading, .fading .rc-text,
+      .fading .rc-step,  .fading .rc-next,
+      .fading .rc-caption-label, .fading .rc-caption,
+      .fading .rc-stat,  .fading .rc-stat-label,
+      .fading #rc-img {
+        opacity: 0;
+        transition: opacity 0s !important;
+      }
+
+      /* ── Responsive ────────────────────────────────────── */
+
+      @media (max-width: 640px) {
+        .recursive-grid .fibgrid-cell.e .rc-stat-label,
+        .recursive-grid .fibgrid-cell.f .rc-stat-label,
+        .recursive-grid .fibgrid-cell.g .rc-stat-label { display: none; }
+
+        .recursive-grid .fibgrid-cell.e .rc-stat { font-size: 0.5rem; }
+        .recursive-grid .fibgrid-cell.f .rc-stat { font-size: 0.42rem; }
+        .recursive-grid .fibgrid-cell.g .rc-stat { font-size: 0.36rem; }
+      }
+
+      @media (max-width: 400px) {
+        .rc-topic, .rc-step, .rc-caption-label { display: none; }
       }
     </style>
   </head>
   <body>
 
-    <div class="fibgrid">
-      <div class="fibgrid-cell a"><span>A — 61.8%</span></div>
-      <div class="fibgrid-cell b"><span>B</span></div>
-      <div class="fibgrid-cell c"><span>C</span></div>
-      <div class="fibgrid-cell d"><span>D</span></div>
-      <div class="fibgrid-cell e"><span>E</span></div>
-      <div class="fibgrid-cell f"><span>F</span></div>
-      <div class="fibgrid-cell g"><span>G</span></div>
+    <!-- Header -->
+    <div class="page-header">
+      <h1>FibGrid</h1>
+      <p>A CSS Grid layout built on the Golden Ratio (φ = 1.618). Columns and rows subdivide recursively. Drop in <code>fibgrid.css</code> and use <code>.fibgrid</code> + <code>.fibgrid-cell.a</code>–<code>.g</code>.</p>
     </div>
 
-    <div class="info">
-      <h1>FibGrid</h1>
-      <p>
-        A CSS Grid layout built on the Golden Ratio (φ = 1.618).
-        Columns and rows are subdivided recursively: <code>61.8%</code> <code>23.6%</code> <code>9.0%</code> <code>5.6%</code>.
-        Drop in <code>fibgrid.css</code> and use <code>.fibgrid</code> + <code>.fibgrid-cell.a</code>–<code>.g</code>.
-      </p>
+    <!-- Static demo -->
+    <div class="demo-base">
+      <div class="fibgrid">
+        <div class="fibgrid-cell a"><span class="cell-name">A</span></div>
+        <div class="fibgrid-cell b"><span class="cell-name">B</span></div>
+        <div class="fibgrid-cell c"><span class="cell-name">C</span></div>
+        <div class="fibgrid-cell d"><span class="cell-name">D</span></div>
+        <div class="fibgrid-cell e"><span class="cell-name">E</span></div>
+        <div class="fibgrid-cell f"><span class="cell-name">F</span></div>
+        <div class="fibgrid-cell g"><span class="cell-name">G</span></div>
+      </div>
     </div>
+
+    <!-- Scrollable nature demo -->
+    <div class="section"><h2>Example — Nature</h2></div>
+    <div class="demo-recursive" id="demo-recursive">
+      <div class="recursive-sticky">
+        <div class="fibgrid recursive-grid" id="recursive-grid">
+          <div class="fibgrid-cell a">
+            <img id="rc-img" src="" alt="">
+          </div>
+          <div class="fibgrid-cell b">
+            <span class="rc-topic"   id="rc-topic"></span>
+            <span class="rc-heading" id="rc-heading"></span>
+            <p    class="rc-text"    id="rc-text"></p>
+          </div>
+          <div class="fibgrid-cell c">
+            <span class="rc-caption-label" id="rc-caption-label"></span>
+            <span class="rc-caption"       id="rc-caption"></span>
+          </div>
+          <div class="fibgrid-cell d">
+            <span class="rc-step" id="rc-step"></span>
+            <span class="rc-next" id="rc-next"></span>
+          </div>
+          <div class="fibgrid-cell e">
+            <span class="rc-stat"       id="rc-e"></span>
+            <span class="rc-stat-label" id="rc-e-label"></span>
+          </div>
+          <div class="fibgrid-cell f">
+            <span class="rc-stat"       id="rc-f"></span>
+            <span class="rc-stat-label" id="rc-f-label"></span>
+          </div>
+          <div class="fibgrid-cell g">
+            <span class="rc-stat"       id="rc-g"></span>
+            <span class="rc-stat-label" id="rc-g-label"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const steps = [
+        // ── Birds ──────────────────────────────────────────
+        {
+          topic:        "Birds",
+          heading:      "Overview",
+          text:         "Birds are a group of warm-blooded theropod dinosaurs constituting the class Aves, characterised by feathers, toothless beaked jaws, the laying of hard-shelled eggs, a high metabolic rate, a four-chambered heart, and a strong yet lightweight skeleton.",
+          nextHeading:  "Evolution",
+          image:        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Bird_Diversity_2013.png/1200px-Bird_Diversity_2013.png",
+          captionLabel: "Distribution",
+          caption:      "Found on every continent, including Antarctica",
+          statE: "11,000+", statELabel: "living species",
+          statF: "44",      statFLabel: "orders",
+          statG: "6",       statGLabel: "continents"
+        },
+        {
+          topic:        "Birds",
+          heading:      "Evolution",
+          text:         "Birds evolved from earlier theropod dinosaurs, and thus constitute the only known living dinosaurs. Their closest living relatives are the crocodilians. The earliest known bird-line archosaurs date to the Middle Triassic, with the famous Archaeopteryx appearing around 150 million years ago.",
+          nextHeading:  "Scale",
+          image:        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Archaeopteryx_lithographica_%28Berlin_specimen%29.jpg/1200px-Archaeopteryx_lithographica_%28Berlin_specimen%29.jpg",
+          captionLabel: "Fossil",
+          caption:      "Archaeopteryx lithographica — Berlin specimen",
+          statE: "150M",  statELabel: "years ago",
+          statF: "~300",  statFLabel: "extinct orders",
+          statG: "4",     statGLabel: "heart chambers"
+        },
+        {
+          topic:        "Birds",
+          heading:      "Scale",
+          text:         "Birds live worldwide and range in size from the 5.5 cm bee hummingbird to the 2.8 m common ostrich. There are over 11,000 living species, split into 44 orders. The largest known bird that ever lived was the Vorombe titan of Madagascar, which could reach 860 kg.",
+          nextHeading:  "Reptiles — Overview",
+          image:        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Anchiornis_feathers.jpg/1200px-Anchiornis_feathers.jpg",
+          captionLabel: "Specimen",
+          caption:      "Anchiornis — feathered dinosaur, Jurassic China",
+          statE: "2.8m",   statELabel: "largest (ostrich)",
+          statF: "5.5cm",  statFLabel: "smallest (hummingbird)",
+          statG: "860kg",  statGLabel: "heaviest ever"
+        },
+
+        // ── Reptiles ────────────────────────────────────────
+        {
+          topic:        "Reptiles",
+          heading:      "Overview",
+          text:         "Reptiles are tetrapod vertebrate animals with an ectothermic metabolism and amniotic development. Their scaly skin, which distinguishes them from amphibians, reduces water loss and enabled them to colonise dry land long before mammals and birds.",
+          nextHeading:  "Classification",
+          image:        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/TWC_Wildlife_Centre%E2%80%A2_Stewart_Nimmo_%E2%80%A2_MRD_8910.jpg/1200px-TWC_Wildlife_Centre%E2%80%A2_Stewart_Nimmo_%E2%80%A2_MRD_8910.jpg",
+          captionLabel: "Class",
+          caption:      "Living reptiles include lizards, snakes, crocodilians, and turtles",
+          statE: "10,000+", statELabel: "living species",
+          statF: "4",       statFLabel: "living orders",
+          statG: "320M",    statGLabel: "years old"
+        },
+        {
+          topic:        "Reptiles",
+          heading:      "Classification",
+          text:         "In classical evolutionary taxonomy, reptiles are gathered under the class Reptilia, comprising turtles, lizards, snakes, amphisbaenians, tuatara, crocodilians, and their extinct relatives. Modern cladistics now also includes birds within the reptile clade.",
+          nextHeading:  "The Crocodilian",
+          image:        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Reptile003d.jpg/1200px-Reptile003d.jpg",
+          captionLabel: "Taxonomy",
+          caption:      "Reptilia is now understood as a paraphyletic group",
+          statE: "6,500+",  statELabel: "lizard species",
+          statF: "3,700+",  statFLabel: "snake species",
+          statG: "350+",    statGLabel: "turtle species"
+        },
+        {
+          topic:        "Reptiles",
+          heading:      "The Crocodilian",
+          text:         "Crocodilians are the largest of the living reptiles and one of the most ancient groups of vertebrates, having changed little in 80 million years. The saltwater crocodile is the world's largest living reptile, reaching up to 7 metres and 1,000 kg.",
+          nextHeading:  "Fish — Overview",
+          image:        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/SaltwaterCrocodile%28%27Maximo%27%29.jpg/1200px-SaltwaterCrocodile%28%27Maximo%27%29.jpg",
+          captionLabel: "Species",
+          caption:      "Crocodylus porosus — saltwater crocodile",
+          statE: "7m",     statELabel: "max length",
+          statF: "1,000kg",statFLabel: "max weight",
+          statG: "80M",    statGLabel: "years unchanged"
+        },
+
+        // ── Fish ────────────────────────────────────────────
+        {
+          topic:        "Fish",
+          heading:      "Overview",
+          text:         "A fish is an aquatic, anamniotic, gill-bearing vertebrate animal with a tough cranium to protect the brain, but lacking limbs with digits. Most are cold-blooded, though some large active swimmers like the white shark and tuna can maintain a higher core temperature.",
+          nextHeading:  "Origins",
+          image:        "https://upload.wikimedia.org/wikipedia/commons/7/7f/Balantiocheilos_melanopterus_-_Karlsruhe_Zoo_02.jpg",
+          captionLabel: "Habitat",
+          caption:      "Fish inhabit every aquatic environment on Earth",
+          statE: "34,000+", statELabel: "known species",
+          statF: "530M",    statFLabel: "years old",
+          statG: "96%",     statGLabel: "are ray-finned"
+        },
+        {
+          topic:        "Fish",
+          heading:      "Origins",
+          text:         "About 530 million years ago, during the Cambrian explosion, fish-like animals with a notochord and eyes at the front of the body appear in the fossil record. The Devonian period is sometimes called the Age of Fishes for the tremendous diversity that arose.",
+          nextHeading:  "Mammals — Overview",
+          image:        "https://upload.wikimedia.org/wikipedia/commons/5/5b/Dunkleosteus_profile.jpg",
+          captionLabel: "Fossil",
+          caption:      "Dunkleosteus — armoured Devonian predator, 10m long",
+          statE: "530M",  statELabel: "years ago",
+          statF: "10m",   statFLabel: "Dunkleosteus length",
+          statG: "3",     statGLabel: "living classes"
+        },
+
+        // ── Mammals ─────────────────────────────────────────
+        {
+          topic:        "Mammals",
+          heading:      "Overview",
+          text:         "A mammal is a vertebrate of the class Mammalia, characterised by milk-producing mammary glands, a broad neocortex region of the brain, fur or hair, and three middle ear bones. These features distinguish them from reptiles and birds, from which their ancestors diverged over 300 million years ago.",
+          nextHeading:  "Origins",
+          image:        "https://upload.wikimedia.org/wikipedia/commons/8/81/Mammal_collage.png",
+          captionLabel: "Diversity",
+          caption:      "Mammals occupy every major habitat from ocean to desert",
+          statE: "6,640+",  statELabel: "living species",
+          statF: "27",      statFLabel: "orders",
+          statG: "300M",    statGLabel: "years old"
+        },
+        {
+          topic:        "Mammals",
+          heading:      "Origins",
+          text:         "The first mammals appeared in the Late Triassic epoch, about 225 million years ago, 40 million years after the first therapsids. They expanded from their nocturnal insectivore niche from the mid-Jurassic onwards, and diversified explosively after the extinction of the non-avian dinosaurs 66 million years ago.",
+          nextHeading:  "Juramaia",
+          image:        "https://upload.wikimedia.org/wikipedia/commons/1/15/Juramaia_NT.jpg",
+          captionLabel: "Ancestor",
+          caption:      "Juramaia sinensis — oldest known eutherian, 160 million years ago",
+          statE: "225M",  statELabel: "years ago",
+          statF: "66M",   statFLabel: "great diversification",
+          statG: "160M",  statGLabel: "oldest eutherian"
+        },
+        {
+          topic:        "Mammals",
+          heading:      "Therapsids",
+          text:         "Mammals descend from therapsids, a clade of synapsids that first appeared in the Permian. The transition from cynodont therapsids to true mammals is one of the most thoroughly documented evolutionary sequences in the fossil record — a gradual transfer of jaw bones into the middle ear.",
+          nextHeading:  "—",
+          image:        "https://upload.wikimedia.org/wikipedia/commons/d/d1/Thrinaxodon_Lionhinus.jpg",
+          captionLabel: "Transition",
+          caption:      "Thrinaxodon — a cynodont close to the mammal boundary",
+          statE: "250M",  statELabel: "therapsid origin",
+          statF: "3",     statFLabel: "middle ear bones",
+          statG: "1",     statGLabel: "jaw bone"
+        }
+      ];
+
+      const container     = document.getElementById('demo-recursive');
+      const grid          = document.getElementById('recursive-grid');
+      const elTopic       = document.getElementById('rc-topic');
+      const elHeading     = document.getElementById('rc-heading');
+      const elText        = document.getElementById('rc-text');
+      const elStep        = document.getElementById('rc-step');
+      const elNext        = document.getElementById('rc-next');
+      const elImg         = document.getElementById('rc-img');
+      const elCapLbl      = document.getElementById('rc-caption-label');
+      const elCap         = document.getElementById('rc-caption');
+      const elE           = document.getElementById('rc-e');
+      const elELabel      = document.getElementById('rc-e-label');
+      const elF           = document.getElementById('rc-f');
+      const elFLabel      = document.getElementById('rc-f-label');
+      const elG           = document.getElementById('rc-g');
+      const elGLabel      = document.getElementById('rc-g-label');
+
+      let currentStep = -1;
+
+      function setContent(step) {
+        const s = steps[step];
+        elTopic.textContent   = s.topic;
+        elHeading.textContent = s.heading;
+        elText.textContent    = s.text;
+        elStep.textContent    = `${step + 1} / ${steps.length}`;
+        elNext.textContent    = s.nextHeading;
+        elImg.src             = s.image;
+        elImg.alt             = `${s.topic} — ${s.heading}`;
+        elCapLbl.textContent  = s.captionLabel;
+        elCap.textContent     = s.caption;
+        elE.textContent       = s.statE;
+        elELabel.textContent  = s.statELabel;
+        elF.textContent       = s.statF;
+        elFLabel.textContent  = s.statFLabel;
+        elG.textContent       = s.statG;
+        elGLabel.textContent  = s.statGLabel;
+      }
+
+      function updateGrid(step) {
+        if (step === currentStep) return;
+        currentStep = step;
+        grid.classList.add('fading');
+        setTimeout(() => {
+          setContent(step);
+          grid.classList.remove('fading');
+        }, 200);
+      }
+
+      function onScroll() {
+        const rect        = container.getBoundingClientRect();
+        const scrolled    = Math.max(0, -rect.top);
+        const totalScroll = container.offsetHeight - window.innerHeight;
+        const progress    = Math.min(1, scrolled / totalScroll);
+        const step        = Math.min(steps.length - 1, Math.floor(progress * steps.length));
+        updateGrid(step);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      currentStep = 0;
+      setContent(0);
+    </script>
 
   </body>
 </html>

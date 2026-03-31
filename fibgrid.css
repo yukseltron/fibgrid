@@ -39,6 +39,7 @@
 .fibgrid {
   display: grid;
   height: var(--fibgrid-height, 100vh);
+  height: var(--fibgrid-height, 100dvh); /* overrides above in browsers that support dvh */
   gap: var(--fibgrid-gap, 0px);
   grid-template-columns: 61.8% 9.02% 5.58% 23.6%;
   grid-template-rows:    61.8% 9.02% 5.58% 23.6%;
